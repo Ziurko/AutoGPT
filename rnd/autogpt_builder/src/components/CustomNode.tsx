@@ -397,8 +397,23 @@ const CustomNode: FC<NodeProps<CustomNodeData>> = ({ data, id }) => {
     }
   };
 
+  const nodeClass = () => {
+    switch (data.status) {
+      case 'RUNNING':
+        return 'node-running';
+      case 'COMPLETED':
+        return 'node-completed';
+      case 'QUEUED':
+        return 'node-queued';
+      case 'FAILED':
+        return 'node-failed';
+      default:
+        return '';
+    }
+  };
+
   return (
-    <div className={`custom-node ${data.status === 'RUNNING' ? 'running' : data.status === 'COMPLETED' ? 'completed' : ''}`}>
+    <div className={`custom-node ${nodeClass()}`}>
       <div className="node-header">
         <div className="node-title">{data.blockType || data.title}</div>
         <button onClick={toggleProperties} className="toggle-button">

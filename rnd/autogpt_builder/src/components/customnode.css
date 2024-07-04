@@ -159,27 +159,57 @@
   flex-grow: 1;
 }
 
+.node-running {
+  animation: runningAnimation 1s infinite alternate;
+}
+
 @keyframes runningAnimation {
-  0% { background-color: #f39c12; }
-  50% { background-color: #e67e22; }
-  100% { background-color: #f39c12; }
+  0% {
+    background-color: #444;
+  }
+  100% {
+    background-color: #666;
+  }
 }
 
-.running {
-  animation: runningAnimation 1s infinite;
+.node-completed {
+  animation: completedAnimation 2s;
+  background-color: #4caf50;
 }
 
-/* Animation for completed status */
 @keyframes completedAnimation {
-  0% { background-color: #27ae60; }
-  100% { background-color: #2ecc71; }
+  0% {
+    background-color: #333;
+  }
+  100% {
+    background-color: #4caf50;
+  }
 }
 
-.completed {
-  animation: completedAnimation 1s infinite;
+.node-queued {
+  animation: queuedAnimation 2s infinite;
+  background-color: #ffc107;
 }
 
-/* Add more styles for better look */
-.custom-node {
-  transition: all 0.3s ease-in-out;
+@keyframes queuedAnimation {
+  0% {
+    background-color: #444;
+  }
+  100% {
+    background-color: #ffc107;
+  }
+}
+
+.node-failed {
+  animation: failedAnimation 2s;
+  background-color: #f44336;
+}
+
+@keyframes failedAnimation {
+  0% {
+    background-color: #333;
+  }
+  100% {
+    background-color: #f44336;
+  }
 }
