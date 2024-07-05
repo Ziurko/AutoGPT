@@ -4,8 +4,10 @@
   border-radius: 12px;
   background: #2c2c2c;
   color: #e0e0e0;
-  width: 300px; /* Adjust width for better layout */
-  box-sizing: border-box; /* Ensure padding doesn't affect overall width */
+  width: 300px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
 }
 
 .node-header {
@@ -28,8 +30,9 @@
 }
 
 .node-content {
+  flex: 1;
   display: flex;
-  flex-direction: column; /* Use column to stack elements */
+  flex-direction: column;
   gap: 10px;
 }
 
@@ -39,6 +42,9 @@
 
 .output-section {
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .handle-container {

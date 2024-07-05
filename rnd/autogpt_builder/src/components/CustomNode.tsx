@@ -1,4 +1,4 @@
-import React, { useState, useEffect, FC, memo } from 'react';
+import React, { useState, useEffect, FC, memo, useCallback } from 'react';
 import { Handle, Position, NodeProps } from 'reactflow';
 import 'reactflow/dist/style.css';
 import './customnode.css';
@@ -145,6 +145,11 @@ const CustomNode: FC<NodeProps<CustomNodeData>> = ({ data, id }) => {
     setIsModalOpen(false);
     setActiveKey(null);
   };
+
+  const autoResize = useCallback((element) => {
+    element.style.height = 'auto';
+    element.style.height = element.scrollHeight + 'px';
+  }, []);
 
   const renderInputField = (key: string, schema: any, parentKey: string = ''): JSX.Element => {
     const fullKey = parentKey ? `${parentKey}.${key}` : key;
@@ -299,7 +304,17 @@ const CustomNode: FC<NodeProps<CustomNodeData>> = ({ data, id }) => {
           </div>
         ) : (
           <div key={fullKey} className="input-container">
-            {renderClickableInput(value || `Enter ${key}`)}
+            <textarea
+              value={value}
+              onChange={(e) => {
+                handleInputChange(fullKey, e.target.value);
+                autoResize(e.target);
+              }}
+              className="text-input"
+              onFocus={(e) => autoResize(e.target)}
+              onInput={(e) => autoResize(e.target)}
+              placeholder={`Enter ${key}`}
+            />
             {error && <span className="error-message">{error}</span>}
           </div>
         );
